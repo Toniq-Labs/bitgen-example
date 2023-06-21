@@ -20,7 +20,7 @@ async function render(size, ...inscriptionIds) {
                 image.addEventListener('error', (event) => {
                     reject(event);
                 });
-                image.src = `/content/${id}`;
+                image.src = `/bitgen-example/content/${id}`;
             });
         }),
     );

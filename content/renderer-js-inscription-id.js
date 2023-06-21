@@ -6,7 +6,7 @@
 async function render(size, ...inscriptionIds) {
     const images = await Promise.all(
         inscriptionIds.map(async (id) => {
-            const image = await fetch(`/content/${id}`);
+            const image = await fetch(`/bitgen-example/content/${id}`);
             return await getBase64(await image.blob());
         }),
     );

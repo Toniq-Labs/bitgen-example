@@ -5,7 +5,8 @@
 
 async function render(size, ...inscriptionIds) {
     const innerImages = inscriptionIds.map(
-        (id) => `<image width="${size.width}px" height="${size.height}px" href="/content/${id}" />`,
+        (id) =>
+            `<image width="${size.width}px" height="${size.height}px" href="/bitgen-example/content/${id}" />`,
     );
 
     const flattenedSvgCode = `<svg xmlns="http://www.w3.org/2000/svg" width="${

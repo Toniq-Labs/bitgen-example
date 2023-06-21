@@ -1,7 +1,7 @@
 const collectionJsonInscriptionId = 'collection-json-inscription-id.json';
 
 async function createInscriptionHtml() {
-    const collectionMetadataPromise = fetch(`/content/${collectionJsonInscriptionId}`).then(
+    const collectionMetadataPromise = fetch(`/bitgen-example/content/${collectionJsonInscriptionId}`).then(
         (response) => response.json(),
     );
 
@@ -12,7 +12,7 @@ async function createInscriptionHtml() {
 
     const rendererScript = document.createElement('script');
     rendererScript.setAttribute('async', '');
-    rendererScript.src = `/content/renderer-js-inscription-id.js`;
+    rendererScript.src = `/bitgen-example/content/renderer-js-inscription-id.js`;
 
     const renderPromise = new Promise((resolve, reject) => {
         rendererScript.addEventListener('load', async () => {
