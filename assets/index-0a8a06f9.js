@@ -92,7 +92,7 @@
     `,stateInitStatic:{inscriptions:fs({defaultValue:Es().then(Ns)})},renderCallback({state:t}){return ps(t.inscriptions)?z`
             ${t.inscriptions}
             <a class="github" href="https://github.com/Toniq-Labs/bitgen-example">
-                <img src="/github-mark.svg" />
+                <img src="/bitgen-example/github-mark.svg" />
             </a>
         `:"Loading..."}});function Ns(t){return Array(Ts).fill(0).map(()=>{const e=t.layers.map(s=>_t({min:0,max:s.traits.length-1}));return z`
                 <${I}
