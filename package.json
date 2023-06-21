@@ -1,0 +1,65 @@
+{
+    "name": "bitgen-example",
+    "version": "0.0.0",
+    "private": true,
+    "homepage": "https://github.com/Toniq-Labs/bitgen-example",
+    "bugs": {
+        "url": "https://github.com/Toniq-Labs/bitgen-example/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Toniq-Labs/bitgen-example"
+    },
+    "license": "(MIT or CC0 1.0)",
+    "author": {
+        "name": "Toniq-Labs",
+        "url": "https://github.com/Toniq-Labs"
+    },
+    "scripts": {
+        "build": "virmator frontend build",
+        "compile": "rm -rf dist && virmator compile",
+        "docs:update": "virmator code-in-markdown",
+        "format": "virmator format",
+        "preview": "virmator frontend preview",
+        "start": "npm install && virmator frontend",
+        "test": "echo \"no tests yet\"",
+        "test:all": "concurrently --colors --kill-others-on-fail -c auto --names types,tests,spelling,format,docs \"npm run test:types\" \"npm run test:coverage\" \"npm run test:spelling\" \"npm run test:format\" \"npm run test:docs\"",
+        "test:coverage": "npm run test coverage",
+        "test:docs": "virmator code-in-markdown check",
+        "test:format": "virmator format check",
+        "test:spelling": "virmator spellcheck",
+        "test:types": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@augment-vir/browser": "^15.2.0",
+        "@augment-vir/element-vir": "^15.2.0",
+        "element-vir": "^14.0.3"
+    },
+    "devDependencies": {
+        "@augment-vir/node-js": "^15.2.0",
+        "@open-wc/testing": "^3.2.0",
+        "@types/mocha": "^10.0.1",
+        "@web/dev-server-esbuild": "^0.4.1",
+        "@web/test-runner": "^0.16.1",
+        "@web/test-runner-commands": "^0.7.0",
+        "@web/test-runner-playwright": "^0.10.1",
+        "@web/test-runner-visual-regression": "^0.8.0",
+        "cspell": "^6.31.1",
+        "esbuild": "^0.18.6",
+        "istanbul-smart-text-reporter": "^1.1.2",
+        "npm-check-updates": "^16.10.12",
+        "prettier": "^2.8.8",
+        "prettier-plugin-interpolated-html-tags": "^0.0.4",
+        "prettier-plugin-jsdoc": "^0.4.2",
+        "prettier-plugin-multiline-arrays": "^1.1.4",
+        "prettier-plugin-organize-imports": "^3.2.2",
+        "prettier-plugin-packagejson": "^2.4.3",
+        "prettier-plugin-sort-json": "^1.0.0",
+        "prettier-plugin-toml": "^0.3.1",
+        "type-fest": "^3.12.0",
+        "typescript": "^5.0.4",
+        "virmator": "^6.6.4",
+        "vite": "^4.3.9",
+        "vite-tsconfig-paths": "^4.2.0"
+    }
+}
