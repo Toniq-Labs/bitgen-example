@@ -1,9 +1,9 @@
 const collectionJsonInscriptionId = 'collection-json-inscription-id.json';
 
 async function createInscriptionHtml() {
-    const collectionMetadataPromise = fetch(`/bitgen-example/content/${collectionJsonInscriptionId}`).then(
-        (response) => response.json(),
-    );
+    const collectionMetadataPromise = fetch(
+        `/bitgen-example/content/${collectionJsonInscriptionId}`,
+    ).then((response) => response.json());
 
     const inscriptionTraitsList = document
         .querySelector('script[traits]')
