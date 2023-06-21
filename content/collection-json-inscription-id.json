@@ -1,0 +1,36 @@
+{
+    "collection": {
+        "name": "Toniq Labs Logos",
+        "description": "A collection of Toniq Labs logos.",
+        "creator": "Toniq Labs",
+        "collectionThumbnailInscriptionId": "toniq-logo-inscription-id.html"
+    },
+    "layers": [
+        {
+            "name": "Background",
+            "traits": [
+                {
+                    "name": "Bioniq",
+                    "inscriptionId": "bioniq-gradient.png"
+                },
+                {
+                    "name": "Toniq",
+                    "inscriptionId": "toniq-gradient.png"
+                }
+            ]
+        },
+        {
+            "name": "Icon",
+            "traits": [
+                {
+                    "name": "Bioniq",
+                    "inscriptionId": "bioniq-b.svg"
+                },
+                {
+                    "name": "Toniq",
+                    "inscriptionId": "toniq-t.svg"
+                }
+            ]
+        }
+    ]
+}
