@@ -1,7 +1,7 @@
 import {convertTemplateToString} from '@augment-vir/element-vir';
 import {css, defineElement, html} from 'element-vir';
 
-export const BitgenInscription = defineElement<{traits: number[]}>()({
+export const BitgenInscription = defineElement<{traits: (number | '')[]}>()({
     tagName: 'bitgen-inscription',
     styles: css`
         :host {

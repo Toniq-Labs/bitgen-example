@@ -20,10 +20,10 @@ async function createInscriptionHtml() {
 
                 const traitInscriptionIds = inscriptionTraitsList.map(
                     (traitIndex, layerIndex) =>
-                        collectionMetadata.layers[layerIndex].traits[traitIndex].inscriptionId,
+                        collectionMetadata.layers[layerIndex].traits[traitIndex]?.inscriptionId,
                 );
 
-                resolve(await render(renderSize, ...traitInscriptionIds));
+                resolve(await render(renderSize, ...traitInscriptionIds.filter((id) => !!id)));
             } catch (error) {
                 console.error(error);
                 reject(error);

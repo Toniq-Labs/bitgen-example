@@ -21,7 +21,7 @@ export const BitgenExampleApp = defineElementNoInputs({
         :host {
             font-family: sans-serif;
             width: 100%;
-            height: 100%;
+            min-height: 100%;
             padding: 32px;
             box-sizing: border-box;
             align-content: flex-start;
@@ -29,6 +29,7 @@ export const BitgenExampleApp = defineElementNoInputs({
             flex-direction: row;
             flex-wrap: wrap;
             gap: 8px;
+            background-color: #eee;
         }
 
         .github {
@@ -76,7 +77,12 @@ function createInscriptionTemplate(
         .fill(0)
         .map(() => {
             const traits = collectionJson.layers.map((layer) => {
-                const chosenTrait = randomInteger({min: 0, max: layer.traits.length - 1});
+                const chosenTrait = randomInteger({min: -1, max: layer.traits.length - 1});
+
+                if (chosenTrait < 0) {
+                    return '';
+                }
+
                 return chosenTrait;
             });
             return html`
