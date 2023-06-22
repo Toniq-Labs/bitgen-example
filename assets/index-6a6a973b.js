@@ -64,7 +64,7 @@
         :host {
             font-family: sans-serif;
             width: 100%;
-            height: 100%;
+            min-height: 100%;
             padding: 32px;
             box-sizing: border-box;
             align-content: flex-start;
@@ -72,6 +72,7 @@
             flex-direction: row;
             flex-wrap: wrap;
             gap: 8px;
+            background-color: #eee;
         }
 
         .github {
@@ -94,7 +95,7 @@
             <a class="github" href="https://github.com/Toniq-Labs/bitgen-example">
                 <img src="/bitgen-example/github-mark.svg" />
             </a>
-        `:t.inscriptions instanceof Error?je(t.inscriptions):"Loading..."}});function Ns(t){return Array(Ts).fill(0).map(()=>{const e=t.layers.map(s=>_t({min:0,max:s.traits.length-1}));return z`
+        `:t.inscriptions instanceof Error?je(t.inscriptions):"Loading..."}});function Ns(t){return Array(Ts).fill(0).map(()=>{const e=t.layers.map(s=>{const r=_t({min:-1,max:s.traits.length-1});return r<0?"":r});return z`
                 <${I}
                     ${Ie(I,{traits:e})}
                 ></${I}>
