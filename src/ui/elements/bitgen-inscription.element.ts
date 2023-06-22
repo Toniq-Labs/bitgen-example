@@ -1,5 +1,4 @@
-import {convertTemplateToString} from '@augment-vir/element-vir';
-import {css, defineElement, html} from 'element-vir';
+import {css, defineElement, html, templateToString} from 'element-vir';
 
 export const BitgenInscription = defineElement<{traits: (number | '')[]}>()({
     tagName: 'bitgen-inscription',
@@ -16,19 +15,29 @@ export const BitgenInscription = defineElement<{traits: (number | '')[]}>()({
             box-sizing: border-box;
             border: none;
         }
+
+        pre {
+            margin: 0;
+            margin-bottom: 1px;
+            padding: 0;
+        }
     `,
     renderCallback({inputs}) {
+        const traitsString = `t="${inputs.traits.join(',')}"`;
+
         const frameSource = html`
             <script
-                t="${inputs.traits.join(',')}"
+                ${traitsString}
                 src="/bitgen-example/content/collection-js-inscription-id.js"
             ></script>
         `;
+
         return html`
+            <pre>${traitsString}</pre>
             <iframe
                 loading="eager"
                 referrerpolicy="no-referrer"
-                srcdoc=${convertTemplateToString(frameSource)}
+                srcdoc=${templateToString(frameSource)}
             ></iframe>
         `;
     },

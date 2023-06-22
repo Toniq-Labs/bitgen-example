@@ -22,14 +22,20 @@ export const BitgenExampleApp = defineElementNoInputs({
             font-family: sans-serif;
             width: 100%;
             min-height: 100%;
-            padding: 32px;
+            padding: 16px 32px;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background-color: #eee;
+        }
+
+        .inscriptions {
             align-content: flex-start;
             display: flex;
             flex-direction: row;
-            flex-wrap: wrap;
             gap: 8px;
-            background-color: #eee;
+            flex-wrap: wrap;
         }
 
         .github {
@@ -47,6 +53,18 @@ export const BitgenExampleApp = defineElementNoInputs({
             width: 100%;
             height: 100%;
         }
+
+        h1 {
+            margin: 0;
+        }
+
+        ul {
+            font-size: 1.1em;
+        }
+
+        li {
+            margin-bottom: 4px;
+        }
     `,
     stateInitStatic: {
         inscriptions: asyncProp({
@@ -62,10 +80,27 @@ export const BitgenExampleApp = defineElementNoInputs({
         }
 
         return html`
-            ${state.inscriptions}
-            <a class="github" href="https://github.com/Toniq-Labs/bitgen-example">
-                <img src="/bitgen-example/github-mark.svg" />
-            </a>
+            <header>
+                <h1>Randomized BitGen Ordinal Examples</h1>
+                <ul>
+                    <li>
+                        <a href="/bitgen-example/content/collection-json-inscription-id.json">
+                            collection trait definitions
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Toniq-Labs/bitgen-example">source code</a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://app.gitbook.com/o/Q3Oxn6JoOM586ZB6JiuM/s/2dG6qI7sUdTOOl3tt0IF/"
+                        >
+                            BitGen Standard
+                        </a>
+                    </li>
+                </ul>
+            </header>
+            <section class="inscriptions">${state.inscriptions}</section>
         `;
     },
 });
