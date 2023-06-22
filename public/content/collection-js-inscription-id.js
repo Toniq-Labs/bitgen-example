@@ -1,5 +1,6 @@
 const collectionJsonInscriptionId = 'collection-json-inscription-id.json';
 const rendererJsInscriptionId = 'renderer-js-inscription-id.js';
+const renderSize = {width: 150, height: 150};
 
 async function createInscriptionHtml() {
     const collectionMetadataPromise = fetch(
@@ -22,15 +23,7 @@ async function createInscriptionHtml() {
                         collectionMetadata.layers[layerIndex].traits[traitIndex].inscriptionId,
                 );
 
-                resolve(
-                    await render(
-                        {
-                            width: 150,
-                            height: 150,
-                        },
-                        ...traitInscriptionIds,
-                    ),
-                );
+                resolve(await render(renderSize, ...traitInscriptionIds));
             } catch (error) {
                 console.error(error);
                 reject(error);
