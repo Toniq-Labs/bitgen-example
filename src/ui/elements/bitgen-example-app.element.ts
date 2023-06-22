@@ -1,4 +1,5 @@
 import {randomInteger} from '@augment-vir/browser';
+import {extractErrorMessage} from '@augment-vir/common';
 import {
     HTMLTemplateResult,
     assign,
@@ -53,6 +54,9 @@ export const BitgenExampleApp = defineElementNoInputs({
     },
     renderCallback({state}) {
         if (!isRenderReady(state.inscriptions)) {
+            if (state.inscriptions instanceof Error) {
+                return extractErrorMessage(state.inscriptions);
+            }
             return 'Loading...';
         }
 

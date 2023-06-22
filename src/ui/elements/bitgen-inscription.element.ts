@@ -20,7 +20,7 @@ export const BitgenInscription = defineElement<{traits: number[]}>()({
     renderCallback({inputs}) {
         const frameSource = html`
             <script
-                traits="${inputs.traits.join(',')}"
+                t="${inputs.traits.join(',')}"
                 src="/bitgen-example/content/collection-js-inscription-id.js"
             ></script>
         `;

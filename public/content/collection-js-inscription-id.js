@@ -1,18 +1,16 @@
 const collectionJsonInscriptionId = 'collection-json-inscription-id.json';
+const rendererJsInscriptionId = 'renderer-js-inscription-id.js';
 
 async function createInscriptionHtml() {
     const collectionMetadataPromise = fetch(
         `/bitgen-example/content/${collectionJsonInscriptionId}`,
     ).then((response) => response.json());
 
-    const inscriptionTraitsList = document
-        .querySelector('script[traits]')
-        .getAttribute('traits')
-        .split(',');
+    const inscriptionTraitsList = document.querySelector('script[t]').getAttribute('t').split(',');
 
     const rendererScript = document.createElement('script');
     rendererScript.setAttribute('async', '');
-    rendererScript.src = `/bitgen-example/content/renderer-js-inscription-id.js`;
+    rendererScript.src = `/bitgen-example/content/${rendererJsInscriptionId}`;
 
     const renderPromise = new Promise((resolve, reject) => {
         rendererScript.addEventListener('load', async () => {
@@ -34,6 +32,7 @@ async function createInscriptionHtml() {
                     ),
                 );
             } catch (error) {
+                console.error(error);
                 reject(error);
             }
         });

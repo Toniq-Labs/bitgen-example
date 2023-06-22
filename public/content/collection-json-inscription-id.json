@@ -23,12 +23,24 @@
             "name": "Icon",
             "traits": [
                 {
-                    "name": "Bioniq",
+                    "name": "Bioniq B SVG",
                     "inscriptionId": "bioniq-b.svg"
                 },
                 {
-                    "name": "Toniq",
+                    "name": "Bioniq B PNG",
+                    "inscriptionId": "bioniq-b.png"
+                },
+                {
+                    "name": "Toniq T SVG",
                     "inscriptionId": "toniq-t.svg"
+                },
+                {
+                    "name": "Toniq T PNG",
+                    "inscriptionId": "toniq-t.png"
+                },
+                {
+                    "name": "Toniq Small",
+                    "inscriptionId": "toniq-small-flat-t.png"
                 }
             ]
         }

@@ -4,24 +4,52 @@
  */
 
 async function render(size, ...inscriptionIds) {
-    const images = await Promise.all(
+    const base64Images = await Promise.all(
         inscriptionIds.map(async (id) => {
             const image = await fetch(`/bitgen-example/content/${id}`);
-            return await getBase64(await image.blob());
+            const base64 = await getBase64(await image.blob());
+
+            return base64;
         }),
     );
 
-    const innerImages = images.map(
-        (image) => `<image width="${size.width}px" height="${size.height}px" href="${image}" />`,
-    );
+    const innerImages = base64Images.map((base64Image) => {
+        return /* HTML */ `
+            <foreignObject x="0" y="0" width="100%" height="100%">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 ${size.width} ${size.height}"
+                    width="${size.width}"
+                    height="${size.height}"
+                    style="image-rendering: pixelated; background: url(${base64Image}) no-repeat center/100%;"
+                ></svg>
+            </foreignObject>
+        `;
+    });
 
-    const flattenedSvgCode = `<svg xmlns="http://www.w3.org/2000/svg" width="${
-        size.width
-    }" height="${size.height}">${innerImages.join('')}</svg>`;
-
+    const flattenedSvgCode = /* HTML */ `
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 ${size.width} ${size.height}"
+            width="${size.width}"
+            height="${size.height}"
+        >
+            ${innerImages.join('')}
+        </svg>
+    `;
     const flattenedSvgBlob = new Blob([flattenedSvgCode], {type: 'image/svg+xml'});
     const flattenedSvgBlobUrl = URL.createObjectURL(flattenedSvgBlob);
-    return `<style>body, html {margin: 0;padding: 0;overflow: hidden;}</style><img src="${flattenedSvgBlobUrl}" />`;
+    return /* HTML */ `
+        <style>
+            body,
+            html {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+        </style>
+        <img src="${flattenedSvgBlobUrl}" />
+    `;
 }
 
 function getBase64(file) {

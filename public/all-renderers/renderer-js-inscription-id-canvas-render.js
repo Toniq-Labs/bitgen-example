@@ -8,6 +8,7 @@ async function render(size, ...inscriptionIds) {
     canvas.width = size.width;
     canvas.height = size.height;
     const context = canvas.getContext('2d');
+    context.imageSmoothingEnabled = false;
 
     const images = await Promise.all(
         inscriptionIds.map(async (id) => {
@@ -31,5 +32,15 @@ async function render(size, ...inscriptionIds) {
 
     const dataUrl = canvas.toDataURL('image/png');
 
-    return `<style>body, html {margin: 0;padding: 0;overflow: hidden;}</style><img src="${dataUrl}" />`;
+    return /* HTML */ `
+        <style>
+            body,
+            html {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+        </style>
+        <img src="${dataUrl}" />
+    `;
 }
