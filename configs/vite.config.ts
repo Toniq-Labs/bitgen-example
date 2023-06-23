@@ -3,5 +3,5 @@ import {defineConfig} from 'vite';
 
 export default defineConfig({
     ...baseViteConfig,
-    base: 'bitgen-example',
+    base: '/bitgen-example',
 });
