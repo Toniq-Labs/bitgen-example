@@ -1,14 +1,18 @@
 async function render(size, ...inscriptionIds) {
     try {
-    const base64Images = await Promise.all(inscriptionIds.map(async (id) => await getBase64(await (await fetch(`/bitgen-example/content/${id}`)).blob())));
-    const innerImages = base64Images.map((base64Image) => `<foreignObject x="0" y="0" width="100%" height="100%"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size.width} ${size.height}" width="${size.width}" height="${size.height}" style="image-rendering: pixelated; background: url(${base64Image}) no-repeat center/contain;"></svg></foreignObject>`);
-
-    const flattenedSvgCode = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size.width} ${size.height}" width="${size.width}" height="${size.height}">${innerImages.join('')}</svg>`;
-    const flattenedSvgBlobUrl = URL.createObjectURL(new Blob([flattenedSvgCode], {type: 'image/svg+xml'}));
-    return `<style>body,html {margin: 0; padding: 0; overflow: hidden;}</style><img src="${flattenedSvgBlobUrl}" />`;
-    } catch (error) {return `<p style="color: red;">${error?.message || String(error)}</p>`;}
+        const base64Images = await Promise.all(inscriptionIds.map(async (id) => await getBase64(await (await fetch(`/bitgen-example/content/${id}`)).blob())));
+        const finalImageUrl = generateCombinedImageUrl(size, base64Images, false);
+        const resizeArtifactFix = `<img class="full-size" onload="this.remove()" src="${generateCombinedImageUrl(size, base64Images, true)}" />`;
+        return`<style>body, html {margin: 0; padding: 0; overflow: hidden;} .full-size {position: absolute; opacity: 1; top: calc(100% - 1px); left: calc(100% - 1px);}</style>${resizeArtifactFix}<img src="${finalImageUrl}" />`;
+    } catch (error) {
+        return `<p style="color: red;">${error?.message || String(error)}</p>`;
+    }
 }
+function generateCombinedImageUrl(size, base64Images, fullSize) {
+    const innerImages = base64Images.map((base64Image) => `<foreignObject x="0" y="0" width="100%" height="100%"><svg ${fullSize ? 'class="full-size"' : ''} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size.width} ${size.height}" width="${size.width}" height="${size.height}" style="image-rendering: pixelated; background: url(${base64Image}) no-repeat ${fullSize ? '' : 'center/contain'};"></svg></foreignObject>`);
 
+    return URL.createObjectURL(new Blob([`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size.width} ${size.height}" width="${size.width}" height="${size.height}">${innerImages.join('')}</svg>`], {type: 'image/svg+xml'}));
+}
 function getBase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
