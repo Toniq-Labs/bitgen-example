@@ -41,6 +41,10 @@
                 {
                     "name": "Toniq Small",
                     "inscriptionId": "toniq-small-flat-t.png"
+                },
+                {
+                    "name": "Animated logos",
+                    "inscriptionId": "both-logos.gif"
                 }
             ]
         }
