@@ -30,7 +30,7 @@ async function render(size, ...inscriptionIds) {
                         viewBox="0 0 ${size.width} ${size.height}"
                         width="${size.width}"
                         height="${size.height}"
-                        style="image-rendering: pixelated; background: url(${base64Image}) no-repeat center/100%;"
+                        style="image-rendering: pixelated; background: url(${base64Image}) no-repeat center/contain;"
                     ></svg>
                 </foreignObject>
             `;
