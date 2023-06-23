@@ -134,6 +134,11 @@
                             BitGen Standard
                         </a>
                     </li>
+                    <li>
+                        <a href="/bitgen-example/content/example.html">
+                            Example stand-alone ordinal
+                        </a>
+                    </li>
                 </ul>
             </header>
             <section class="inscriptions">${t.inscriptions}</section>
