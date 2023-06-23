@@ -17,52 +17,81 @@ async function render(size, ...inscriptionIds) {
                 return await getBase64(await image.blob());
             }),
         );
-        /**
-         * Inner SVGs must be generated so that animated GIFs will render correctly as a standalone
-         * tab in all browsers. Using background urls on an SVG allows "image-rendering: pixelated"
-         * to work in all browsers.
-         */
-        const innerImages = base64Images.map((base64Image) => {
-            return /* HTML */ `
-                <foreignObject x="0" y="0" width="100%" height="100%">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 ${size.width} ${size.height}"
-                        width="${size.width}"
-                        height="${size.height}"
-                        style="image-rendering: pixelated; background: url(${base64Image}) no-repeat center/contain;"
-                    ></svg>
-                </foreignObject>
-            `;
-        });
 
-        const flattenedSvgCode = /* HTML */ `
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 ${size.width} ${size.height}"
-                width="${size.width}"
-                height="${size.height}"
-            >
-                ${innerImages.join('')}
-            </svg>
-        `;
-        const flattenedSvgBlobUrl = URL.createObjectURL(
-            new Blob([flattenedSvgCode], {type: 'image/svg+xml'}),
-        );
+        const finalImageUrl = generateCombinedImageUrl(size, base64Images, false);
+        /**
+         * This fixes a bug in some browsers where resized images with transparent backgrounds have
+         * transparency edge render artifacts, like grey borders. As long as this image gets 1 pixel
+         * rendered on screen for 1 frame, the artifacts will go away.
+         */
+        const resizeArtifactFix = `
+        <img
+            class="full-size"
+            onload="this.remove()"
+            src="${generateCombinedImageUrl(size, base64Images, true)}"
+        />
+    `;
+
         return /* HTML */ `
             <style>
+                /*
+                    Remove default browser padding/margin for when this is loaded in an iframe.
+                */
                 body,
                 html {
                     margin: 0;
                     padding: 0;
                     overflow: hidden;
                 }
+                .full-size {
+                    position: absolute;
+                    opacity: 1;
+                    top: calc(100% - 1px);
+                    left: calc(100% - 1px);
+                }
             </style>
-            <img src="${flattenedSvgBlobUrl}" />
+            ${resizeArtifactFix}
+            <img src="${finalImageUrl}" />
         `;
     } catch (error) {
         return `<p style="color: red;">${error?.message || String(error)}</p>`;
     }
+}
+
+function generateCombinedImageUrl(size, base64Images, fullSize) {
+    /**
+     * Inner SVGs must be generated so that animated GIFs will render correctly as a standalone tab
+     * in all browsers. Using background urls on an SVG allows "image-rendering: pixelated" to work
+     * in all browsers.
+     */
+    const innerImages = base64Images.map((base64Image) => {
+        return /* HTML */ `
+            <foreignObject x="0" y="0" width="100%" height="100%">
+                <svg
+                    ${fullSize ? 'class="full-size"' : ''}
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 ${size.width} ${size.height}"
+                    width="${size.width}"
+                    height="${size.height}"
+                    style="image-rendering: pixelated; background: url(${base64Image}) no-repeat ${fullSize
+                        ? ''
+                        : 'center/contain'};"
+                ></svg>
+            </foreignObject>
+        `;
+    });
+
+    const flattenedSvgCode = /* HTML */ `
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 ${size.width} ${size.height}"
+            width="${size.width}"
+            height="${size.height}"
+        >
+            ${innerImages.join('')}
+        </svg>
+    `;
+    return URL.createObjectURL(new Blob([flattenedSvgCode], {type: 'image/svg+xml'}));
 }
 
 function getBase64(file) {
