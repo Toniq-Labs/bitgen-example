@@ -63,5 +63,8 @@
         "virmator": "^6.6.4",
         "vite": "^4.3.9",
         "vite-tsconfig-paths": "^4.2.0"
+    },
+    "overrides": {
+        "semver": "^7.5.3"
     }
 }

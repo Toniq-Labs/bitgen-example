@@ -103,6 +103,11 @@ export const BitgenExampleApp = defineElementNoInputs({
                             Example stand-alone ordinal
                         </a>
                     </li>
+                    <li>
+                        <a href="/bitgen-example/content/image-includes.svg">
+                            Example non-BitGen ordinal
+                        </a>
+                    </li>
                 </ul>
             </header>
             <section class="inscriptions">${state.inscriptions}</section>
