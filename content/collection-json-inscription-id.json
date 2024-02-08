@@ -1,21 +1,21 @@
 {
     "collection": {
-        "name": "Toniq Labs Logos",
-        "description": "A collection of Toniq Labs logos.",
+        "collectionThumbnailInscriptionId": "toniq-logo-inscription-id.html",
         "creator": "Toniq Labs",
-        "collectionThumbnailInscriptionId": "toniq-logo-inscription-id.html"
+        "description": "A collection of Toniq Labs logos.",
+        "name": "Toniq Labs Logos"
     },
     "layers": [
         {
             "name": "Background",
             "traits": [
                 {
-                    "name": "Bioniq",
-                    "inscriptionId": "bioniq-gradient.png"
+                    "inscriptionId": "bioniq-gradient.png",
+                    "name": "Bioniq"
                 },
                 {
-                    "name": "Toniq",
-                    "inscriptionId": "toniq-gradient.png"
+                    "inscriptionId": "toniq-gradient.png",
+                    "name": "Toniq"
                 }
             ]
         },
@@ -23,28 +23,28 @@
             "name": "Icon",
             "traits": [
                 {
-                    "name": "Bioniq B SVG",
-                    "inscriptionId": "bioniq-b.svg"
+                    "inscriptionId": "bioniq-b.svg",
+                    "name": "Bioniq B SVG"
                 },
                 {
-                    "name": "Bioniq B PNG",
-                    "inscriptionId": "bioniq-b.png"
+                    "inscriptionId": "bioniq-b.png",
+                    "name": "Bioniq B PNG"
                 },
                 {
-                    "name": "Toniq T SVG",
-                    "inscriptionId": "toniq-t.svg"
+                    "inscriptionId": "toniq-t.svg",
+                    "name": "Toniq T SVG"
                 },
                 {
-                    "name": "Toniq T PNG",
-                    "inscriptionId": "toniq-t.png"
+                    "inscriptionId": "toniq-t.png",
+                    "name": "Toniq T PNG"
                 },
                 {
-                    "name": "Toniq Small",
-                    "inscriptionId": "toniq-small-flat-t.png"
+                    "inscriptionId": "toniq-small-flat-t.png",
+                    "name": "Toniq Small"
                 },
                 {
-                    "name": "Animated logos",
-                    "inscriptionId": "both-logos.gif"
+                    "inscriptionId": "both-logos.gif",
+                    "name": "Animated logos"
                 }
             ]
         }
