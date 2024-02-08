@@ -1,0 +1,52 @@
+{
+    "collection": {
+        "collectionThumbnailInscriptionId": "toniq-logo-inscription-id.html",
+        "creator": "Toniq Labs",
+        "description": "A collection of Toniq Labs logos.",
+        "name": "Toniq Labs Logos"
+    },
+    "layers": [
+        {
+            "name": "Background",
+            "traits": [
+                {
+                    "inscriptionId": "bioniq-gradient.png",
+                    "name": "Bioniq"
+                },
+                {
+                    "inscriptionId": "toniq-gradient.png",
+                    "name": "Toniq"
+                }
+            ]
+        },
+        {
+            "name": "Icon",
+            "traits": [
+                {
+                    "inscriptionId": "bioniq-b.svg",
+                    "name": "Bioniq B SVG"
+                },
+                {
+                    "inscriptionId": "bioniq-b.png",
+                    "name": "Bioniq B PNG"
+                },
+                {
+                    "inscriptionId": "toniq-t.svg",
+                    "name": "Toniq T SVG"
+                },
+                {
+                    "inscriptionId": "toniq-t.png",
+                    "name": "Toniq T PNG"
+                },
+                {
+                    "inscriptionId": "toniq-small-flat-t.png",
+                    "name": "Toniq Small"
+                },
+                {
+                    "inscriptionId": "both-logos.gif",
+                    "name": "Animated logos"
+                }
+            ]
+        }
+    ]
+}

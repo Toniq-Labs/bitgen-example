@@ -1,4 +1,4 @@
-import {css, defineElement, html, templateToString} from 'element-vir';
+import {convertTemplateToString, css, defineElement, html} from 'element-vir';
 
 export const BitgenInscription = defineElement<{traits: (number | '')[]}>()({
     tagName: 'bitgen-inscription',
@@ -37,7 +37,7 @@ export const BitgenInscription = defineElement<{traits: (number | '')[]}>()({
             <iframe
                 loading="eager"
                 referrerpolicy="no-referrer"
-                srcdoc=${templateToString(frameSource)}
+                srcdoc=${convertTemplateToString(frameSource)}
             ></iframe>
         `;
     },

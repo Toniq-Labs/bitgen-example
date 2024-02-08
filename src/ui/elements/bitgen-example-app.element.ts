@@ -1,13 +1,12 @@
-import {randomInteger} from '@augment-vir/browser';
-import {extractErrorMessage} from '@augment-vir/common';
+import {extractErrorMessage, randomInteger} from '@augment-vir/common';
 import {
     HTMLTemplateResult,
-    assign,
     asyncProp,
     css,
     defineElementNoInputs,
     html,
-    isRenderReady,
+    isError,
+    isResolved,
 } from 'element-vir';
 import {ReadonlyDeep} from 'type-fest';
 import {CollectionJson, loadCollectionJson} from '../../data/collection-json';
@@ -72,11 +71,10 @@ export const BitgenExampleApp = defineElementNoInputs({
         }),
     },
     renderCallback({state}) {
-        if (!isRenderReady(state.inscriptions)) {
-            if (state.inscriptions instanceof Error) {
-                return extractErrorMessage(state.inscriptions);
-            }
+        if (!isResolved(state.inscriptions.value)) {
             return 'Loading...';
+        } else if (isError(state.inscriptions.value)) {
+            return extractErrorMessage(state.inscriptions);
         }
 
         return html`
@@ -110,7 +108,7 @@ export const BitgenExampleApp = defineElementNoInputs({
                     </li>
                 </ul>
             </header>
-            <section class="inscriptions">${state.inscriptions}</section>
+            <section class="inscriptions">${state.inscriptions.value}</section>
         `;
     },
 });
@@ -131,11 +129,9 @@ function createInscriptionTemplate(
                 return chosenTrait;
             });
             return html`
-                <${BitgenInscription}
-                    ${assign(BitgenInscription, {
-                        traits,
-                    })}
-                ></${BitgenInscription}>
+                <${BitgenInscription.assign({
+                    traits,
+                })}></${BitgenInscription}>
             `;
         });
 }
