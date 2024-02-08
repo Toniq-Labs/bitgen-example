@@ -1,6 +1,6 @@
 # bitgen-example
 
-An example on how to run [the BitGen standard](https://app.gitbook.com/o/Q3Oxn6JoOM586ZB6JiuM/s/2dG6qI7sUdTOOl3tt0IF/).
+An example on how to run [the BitGen standard](https://bioniq-1.gitbook.io/bitgen-bitcoin-generative-ordinals-standard-alpha/).
 
 Tested in Safari (macOS and iOS), Chrome, and Firefox.
 

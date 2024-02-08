@@ -93,7 +93,7 @@ export const BitgenExampleApp = defineElementNoInputs({
                     </li>
                     <li>
                         <a
-                            href="https://app.gitbook.com/o/Q3Oxn6JoOM586ZB6JiuM/s/2dG6qI7sUdTOOl3tt0IF/"
+                            href="https://bioniq-1.gitbook.io/bitgen-bitcoin-generative-ordinals-standard-alpha/"
                         >
                             BitGen Standard
                         </a>
